@@ -28,10 +28,12 @@ async function getZaytungNewsFromPage(page) {
 
 async function getZaytungNews(pageAmount) {
     let retVal = [];
+    let promises = [];
     for(let i = 1; i <= pageAmount; i++) {
-        (await getZaytungNewsFromPage(i)).forEach(element => retVal.push(element));
+        promises.push(getZaytungNewsFromPage(i).then(result => result.forEach(news => retVal.push(news))));
     }
 
+    await Promise.all(promises);
     return retVal;
 }
 
