@@ -32,22 +32,18 @@
 		</div>
 	</div>
 	<div
-		class="flex flex-row text-center text-2xl md:text-3xl lg:text-4xl h-full italic font-semibold"
+		class="
+		flex flex-row text-center text-2xl md:text-3xl lg:text-4xl h-full italic font-semibold"
 	>
-		<span class="mb-auto text-8xl font-serif h-full opacity-30">“</span>
-		<div
-			class="py-8 px-12 flex-nowrap flex items-center ring-gray-800 ring-2 ring-offset-2"
-		>
-			{currentQuestion}
-		</div>
+		<!-- <span class="mb-auto text-8xl font-serif h-full opacity-30">“</span> -->
 		<div
 			class="py-8 px-12 flex-nowrap flex items-center ring-gray-800 ring-2 ring-offset-2 rounded-md"
 		>
 			{currentQuestion}
 		</div>
-		<span class="mt-auto text-8xl font-serif h-full flex items-end opacity-30"
+		<!-- <span class="mt-auto text-8xl font-serif h-full flex items-end opacity-30"
 			>”</span
-		>
+		> -->
 	</div>
 	<div class="flex flex-row justify-evenly h-auto align-middle">
 		<button
