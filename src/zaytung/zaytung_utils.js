@@ -2,6 +2,7 @@ import axios from 'axios';
 import matchAll from 'match-all';
 
 const newsUrl = 'https://www.zaytung.com/digerleri.asp?pg=';
+const baseUrl = 'https://www.zaytung.com/';
 
 function decodeEntities(encodedString) {
     var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
@@ -22,8 +23,15 @@ function decodeEntities(encodedString) {
 
 async function getZaytungNewsFromPage(page) {
     let data = decodeEntities((await axios.get(newsUrl + page)).data);
-    let matches = matchAll(data, /style="text-decoration:none;color:black;">([^<>]+)</gi).toArray();
-    return matches.slice(1, matches.length);
+    let matches = matchAll(data, /href="([^"]*)" style="text-decoration:none;color:black;">([^<>]+)/gi);
+    let retVal = [];
+    for (let match = matches.nextRaw(); match != null; match = matches.nextRaw()) {
+        retVal.push({
+            title: match[2],
+            link: baseUrl + match[1]
+        });
+    }
+    return retVal;
 }
 
 async function getZaytungNews(pageAmount) {
