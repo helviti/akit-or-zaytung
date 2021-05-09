@@ -1,19 +1,26 @@
 <script>
-	import source from '../source.json';
+	import news from '../news.json';
 	$: points = 0;
-	let currentAnswer = 1;
-	$: currentQuestion = `Sağlık Bakanlığı Uyarıyor: 'Vaka sayıları bu hızla artarsa ne işe yaradığı
-			belirsiz, kimsenin sallamayacağı yeni tedbirler almak zorunda
-			kalabiliriz...'
-			`;
+	$: currentQuestion = ``;
+	$: answer = 0;
 	function checkIfTrue(choice) {
-		if (choice === currentAnswer) {
+		if (choice === answer) {
 			points += 1;
+			getRandomQuestion();
 		} else {
 			points -= 1;
+			getRandomQuestion();
 		}
 	}
-	function getRandomQuestion() {}
+	function getRandomQuestion() {
+		const source = Math.round(Math.random());
+		const currentSource = source ? news.zaytung : news.akit;
+		answer = source;
+
+		currentQuestion =
+			currentSource[Math.round(Math.random() * currentSource.length)].title;
+	}
+	getRandomQuestion();
 </script>
 
 <svelte:head>
