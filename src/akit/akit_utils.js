@@ -5,12 +5,12 @@ const newsUrl = 'https://www.yeniakit.com.tr/haber/';
 
 async function getAkitNews() {
     let data = (await axios.get(newsUrl)).data;
-    let matches = matchAll(data, /<div class="element"> <a href="([^"]*)|class="spot">([^<]*)/gi).toArray();
+    let matches = matchAll(data, /<div class="element"> <a href="([^"]*)" title="([^"]*)"/gi);
     let retVal = [];
-    for (let i = 1; i < matches.length; i++) {
+    for (let match = matches.nextRaw(); match != null; match = matches.nextRaw()) {
         retVal.push({
-            title: matches[i + 1],
-            link: matches[i]
+            title: match[2],
+            link: match[1]
         });
     }
     return retVal;
