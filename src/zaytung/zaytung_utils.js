@@ -26,8 +26,16 @@ async function getZaytungNewsFromPage(page) {
     let matches = matchAll(data, /href="([^"]*)" style="text-decoration:none;color:black;">([^<>]+)/gi);
     let retVal = [];
     for (let match = matches.nextRaw(); match != null; match = matches.nextRaw()) {
+        let title = match[2];
+        if (title.endsWith('...')) {
+            title = title.substring(0, title.length - 3);
+        }
+        else if (title.endsWith("...''")) {
+            title = title.substring(0, title.length - 5);
+            title += "''";
+        }
         retVal.push({
-            title: match[2],
+            title: title,
             link: baseUrl + match[1]
         });
     }
