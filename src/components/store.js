@@ -22,8 +22,8 @@ export function pauseGame() {
 	state.set('paused');
 }
 
-export function addToPrevious(id) {
-	prev.update((arr) => [...arr, id]);
+export function addToPrevious(qst) {
+	prev.update((arr) => [...arr, qst]);
 }
 
 export function getQuestion() {
@@ -32,7 +32,8 @@ export function getQuestion() {
 		: { src: 'akit', news: news.akit };
 
 	const id = Math.round(Math.random() * list.news.length);
-	addToPrevious(id);
+
+	addToPrevious({ src: list.src, id });
 	//Add check for previous id's
 	question.set({ ...list.news[id], src: list.src });
 }

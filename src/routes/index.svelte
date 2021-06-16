@@ -27,7 +27,6 @@
 			decrement();
 			answerText = 'Yanlis!';
 		}
-		getQuestion();
 	}
 
 	onMount(() => {
@@ -40,7 +39,7 @@
 </svelte:head>
 
 <div
-	class="select-none antialiased flex flex-col h-screen space-y-4 py-16 px-8 lg:py-10 lg:px-24"
+	class="select-none antialiased flex flex-col h-screen space-y-4 py-16 px-8 lg:py-10 lg:px-24 bg-isabelline"
 >
 	{#if $state != 'init'}
 		<Header />
@@ -51,7 +50,7 @@
 		flex text-2xl md:text-3xl lg:text-4xl h-full italic font-semibold"
 	>
 		<div
-			class="py-8 px-12 flex-nowrap flex relative flex-row justify-center text-center items-center w-full lowercase"
+			class="py-8 px-12 flex-nowrap flex relative flex-row justify-center text-center items-center w-full lowercase border-[1px] border-gray-300 m-4"
 		>
 			{#if $state == 'playing'}
 				<div class="flex flex-auto items-center">
@@ -71,31 +70,36 @@
 			{/if}
 		</div>
 	</div>
-	<div class="flex flex-row justify-evenly h-1/6 align-middle">
-		{#if $state == 'playing'}
-			<button
-				on:click={() => checkAnswer('akit')}
-				class="font-extrabold bg-red-700 hover:bg-red-600 w-2/6 text-gray-100 ring-2 ring-red-700 ring-offset-4 text-2xl h-auto rounded-md ring-offset-gray-100 focus:outline-none "
-			>
-				akit
-			</button>
-			<button
-				on:click={() => checkAnswer('zaytung')}
-				class="font-serif font-bold bg-gray-200 hover:bg-gray-100 w-2/6 ring-2 ring-gray-300 ring-offset-4 text-2xl uppercase rounded-md ring-offset-gray-100 focus:outline-none"
-			>
-				zaytung
-			</button>
-		{/if}
-		{#if $state == 'paused'}
-			<button
-				class="bg-red-200 font-medium p-2 rounded-md"
-				on:click={() => {
-					startGame();
-				}}
-			>
-				sonraki soru
-			</button>
-		{/if}
-	</div>
+	{#if $state != 'init'}
+		<div
+			class="flex flex-row justify-evenly h-[15%] align-middle border-[1px] border-gray-300 p-4 bg-gray-200 shadow-md"
+		>
+			{#if $state == 'playing'}
+				<button
+					on:click={() => checkAnswer('akit')}
+					class="font-extrabold bg-red-700 hover:bg-red-600 w-2/6 text-gray-100 text-3xl h-auto rounded-md focus:outline-none shadow-md"
+				>
+					akit
+				</button>
+				<button
+					on:click={() => checkAnswer('zaytung')}
+					class="font-serif font-extrabold bg-gray-400 hover:bg-gray-300 w-2/6 text-3xl uppercase rounded-md focus:outline-none shadow-md"
+				>
+					zaytung
+				</button>
+			{/if}
+			{#if $state == 'paused'}
+				<button
+					class="bg-red-200 font-medium p-2 rounded-md"
+					on:click={() => {
+						startGame();
+						getQuestion();
+					}}
+				>
+					sonraki soru
+				</button>
+			{/if}
+		</div>
+	{/if}
 </div>
 {$prev}

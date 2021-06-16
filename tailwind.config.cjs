@@ -5,7 +5,11 @@ module.exports = {
 		safelist: [/^svelte-[\d\w]+$/]
 	},
 	theme: {
-		extend: {}
+		extend: {
+			colors: {
+				isabelline: '#F3EEF0'
+			}
+		}
 	},
 	variants: {
 		extend: {}

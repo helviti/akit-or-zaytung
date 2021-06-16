@@ -4,7 +4,7 @@
 </script>
 
 <div
-	class="flex flex-col items-center space-y-8 bg-gray-50 p-12 rounded-sm shadow-xl border-2 border-gray-200"
+	class="flex flex-col items-center space-y-8 bg-gray-50 p-12 rounded-sm shadow-xl border-[1px] border-gray-300"
 >
 	<div
 		class="flex flex-col text-3xl text-center text-gray-800 font-semibold items-center justify-items-center space-y-1"
