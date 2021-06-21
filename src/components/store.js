@@ -4,10 +4,13 @@ import news from '../news.json';
 export const state = writable('init');
 export const score = writable(0);
 export const prev = writable([]);
+export const change = writable('');
 export const question = writable({});
+export const answerText = writable('');
 
 export function increment() {
 	score.update((n) => n + 1);
+	change.set('+');
 }
 
 export function decrement() {
@@ -27,6 +30,7 @@ export function addToPrevious(qst) {
 }
 
 export function getQuestion() {
+	answerText.set('');
 	const list = Math.round(Math.random())
 		? { src: 'zaytung', news: news.zaytung }
 		: { src: 'akit', news: news.akit };
